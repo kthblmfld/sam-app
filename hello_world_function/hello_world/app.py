@@ -25,6 +25,10 @@ def lambda_handler(event, context):
         The same input event file
     """
 
+    print(f'Function Name: {context.function_name}')
+    print(f'Function Version: {context.function_version}')
+    print(f'Invoked Function Arn: {context.invoked_function_arn}')
+
     #Deserialize event into strongly typed object
     awsEvent:AWSEvent = Marshaller.unmarshall(event, AWSEvent)
     ec2StateChangeNotification:EC2InstanceStateChangeNotification = awsEvent.detail
