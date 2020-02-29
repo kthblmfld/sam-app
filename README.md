@@ -1,5 +1,22 @@
 # sam-app
 
+#### This project is built on [Python3.8](https://www.python.org/downloads/release/python-380/). Building without it will result in:
+`Error: Binary validation failed!`
+
+#### Setup the development environment
+    pip3 install --upgrade pip
+    pip3 install pipenv
+    pipenv install
+    pipenv shell
+     
+#### Build the project
+    sam build
+    
+#### Deploy the project
+    sam deploy --guided
+
+
+
 This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders.
 
 - hello_world - Code for the application's Lambda function.
