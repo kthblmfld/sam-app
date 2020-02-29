@@ -1,1 +1,4 @@
 venv
+*.idea
+.aws-sam
+_pytest
