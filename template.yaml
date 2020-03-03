@@ -8,13 +8,13 @@ Metadata:
     Name: sam-app
     Description: Lambda aliasing and versioning example
     Author: kthblmfld
-    #    SpdxLicenseId: Apache-2.0
-    #    LicenseUrl: LICENSE.txt
-    #    ReadmeUrl: README.md
+    SpdxLicenseId: Apache-2.0
+    LicenseUrl: LICENSE.txt
+    ReadmeUrl: README.md
     Labels: ['appId:123']
-    #    HomePageUrl: https://github.com/user1/my-app-project
+    HomePageUrl: https://github.com/kthblmfld/sam-app
     SemanticVersion: 0.0.3
-#    SourceCodeUrl: https://github.com/user1/my-app-project
+    SourceCodeUrl: https://github.com/kthblmfld/sam-app
 Globals:
   Function:
     Timeout: 3
@@ -43,7 +43,9 @@ Resources:
       AutoPublishAlias: deploymentEnvironment
       CodeUri: hello_world_function
       DeploymentPreference:
-        Type: Linear10PercentEvery10Minutes
+#        Options: Canary10Percent5Minutes, Linear10PercentEvery1Minute...
+#        https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations.html
+        Type: AllAtOnce
       Environment:
         Variables:
           DeployedEnv: !Ref deploymentEnvironment

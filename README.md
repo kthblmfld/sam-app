@@ -44,7 +44,7 @@
 
 ### Reminder
 
-  Build after every change (code, template). Explore live reload option.
+  Build after every change (code, template). Explore live reload option.  
 
 
 ### Publishing new versions:
@@ -53,6 +53,17 @@ Required: AWS::ServerlessRepo::Application in template
 
 https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-template-publishing-applications.html
 
+### Publication Flow Workaround
+
+
+    sam build
+    
+    sam package --s3-bucket your-bucket --output-template-file packaged.yaml
+    
+    sam deploy --template-file packaged.yaml \
+    --region eu-west-1 \
+    --capabilities CAPABILITY_IAM \
+    --stack-name your-stack
 
 
 Sam-generated documentation
