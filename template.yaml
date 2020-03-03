@@ -3,6 +3,18 @@ AWSTemplateFormatVersion: "2010-09-09"
 Description: |
   sam-app
   Sample SAM Template for sam-app
+Metadata:
+  AWS::ServerlessRepo::Application:
+    Name: sam-app
+    Description: Lambda aliasing and versioning example
+    Author: kthblmfld
+    #    SpdxLicenseId: Apache-2.0
+    #    LicenseUrl: LICENSE.txt
+    #    ReadmeUrl: README.md
+    Labels: ['appId:123']
+    #    HomePageUrl: https://github.com/user1/my-app-project
+    SemanticVersion: 0.0.3
+#    SourceCodeUrl: https://github.com/user1/my-app-project
 Globals:
   Function:
     Timeout: 3

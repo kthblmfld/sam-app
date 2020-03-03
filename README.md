@@ -1,7 +1,33 @@
 # sam-app
 
+
 #### This project is built on [Python3.8](https://www.python.org/downloads/release/python-380/). Building without it will result in:
 `Error: Binary validation failed!`
+
+#### Required tools:
+  [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
+  [sam-cli](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
+  [docker](https://docs.docker.com/install/)
+
+#### Required for publishing new versions:
+
+* A bucket policy granting the service reads of uploaded arifacts:
+
+    `{
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Principal": {
+                    "Service":  "serverlessrepo.amazonaws.com"
+                },
+                "Action": "s3:GetObject",
+                "Resource": "arn:aws:s3:::<your-bucket-name>/*"
+            }
+        ]
+    }`
+
+* A Metadata section in your SAM template
 
 #### Setup the development environment
     pip3 install --upgrade pip
@@ -14,6 +40,24 @@
     
 #### Deploy the project
     sam deploy --guided
+
+
+### Reminder
+
+  Build after every change (code, template). Explore live reload option.
+
+
+### Publishing new versions:
+
+Required: AWS::ServerlessRepo::Application in template
+
+https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-template-publishing-applications.html
+
+
+
+Sam-generated documentation
+----
+
 
 
 
