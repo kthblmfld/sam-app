@@ -13,7 +13,7 @@ Metadata:
     ReadmeUrl: README.md
     Labels: ['appId:123']
     HomePageUrl: https://github.com/kthblmfld/sam-app
-    SemanticVersion: 0.0.3
+    SemanticVersion: 0.0.4
     SourceCodeUrl: https://github.com/kthblmfld/sam-app
 Globals:
   Function:

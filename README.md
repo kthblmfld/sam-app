@@ -38,32 +38,28 @@
 #### Build the project
     sam build
     
-#### Deploy the project
-    sam deploy --guided
-
+#### Publish a new version of the project
+    rev the value of 'SemanticVersion' in template.yaml
+    sam build
+    sam package --s3-bucket your-source-bucket --output-template-file packaged.yaml
+    sam deploy \
+    --template-file packaged.yaml \
+    --region us-west-2 \
+    --capabilities CAPABILITY_IAM \
+    --stack-name your-stack
+    sam publish -t packaged.yaml
 
 ### Reminder
 
   Build after every change (code, template). Explore live reload option.  
 
 
-### Publishing new versions:
+### More info about publication:
 
-Required: AWS::ServerlessRepo::Application in template
+Required/relied on: AWS::ServerlessRepo::Application in template
 
 https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-template-publishing-applications.html
 
-### Publication Flow Workaround
-
-
-    sam build
-    
-    sam package --s3-bucket your-bucket --output-template-file packaged.yaml
-    
-    sam deploy --template-file packaged.yaml \
-    --region eu-west-1 \
-    --capabilities CAPABILITY_IAM \
-    --stack-name your-stack
 
 
 Sam-generated documentation
