@@ -3,3 +3,4 @@ venv
 .aws-sam
 _pytest
 packaged.yaml
+samconfig.toml
