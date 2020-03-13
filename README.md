@@ -61,6 +61,10 @@ Required/relied on: AWS::ServerlessRepo::Application in template
 https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-template-publishing-applications.html
 
 
+### References, additional reading, special thanks:
+
+  [Lambda Versioning Strategies](https://medium.com/@kevinng/aws-lambda-versioning-strategies-5ef877efd0be)
+
 
 Sam-generated documentation
 ----

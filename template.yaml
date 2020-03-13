@@ -13,7 +13,7 @@ Metadata:
     ReadmeUrl: README.md
     Labels: ['appId:123']
     HomePageUrl: https://github.com/kthblmfld/sam-app
-    SemanticVersion: 0.0.4
+    SemanticVersion: 0.0.6
     SourceCodeUrl: https://github.com/kthblmfld/sam-app
 Globals:
   Function:
@@ -40,7 +40,7 @@ Parameters:
 Resources:
   HelloWorldFunction:
     Properties:
-      AutoPublishAlias: deploymentEnvironment
+      AutoPublishAlias: !Ref deploymentEnvironment
       CodeUri: hello_world_function
       DeploymentPreference:
 #        Options: Canary10Percent5Minutes, Linear10PercentEvery1Minute...
