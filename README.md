@@ -4,6 +4,8 @@
 #### This project is built on [Python3.8](https://www.python.org/downloads/release/python-380/). Building without it will result in:
 `Error: Binary validation failed!`
 
+#### Remote deployment and publication require an [Aws account](https://aws.amazon.com/console/)
+
 #### Required tools:
   [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
   [sam-cli](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
