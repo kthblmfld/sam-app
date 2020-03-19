@@ -13,7 +13,7 @@
 
 #### Required for publishing new versions:
 
-* A bucket policy granting the service reads of uploaded arifacts:
+* A bucket policy granting the service reads of uploaded artifacts:
 
     `{
         "Version": "2012-10-17",
