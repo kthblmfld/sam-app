@@ -43,7 +43,7 @@ Resources:
       AutoPublishAlias: !Ref deploymentEnvironment
       CodeUri: hello_world_function
       DeploymentPreference:
-#        Options: Canary10Percent5Minutes, Linear10PercentEvery1Minute...
+#        Canary deployment options eg: Canary10Percent5Minutes, Linear10PercentEvery1Minute...
 #        https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations.html
         Type: AllAtOnce
       Environment:
