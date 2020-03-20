@@ -1,3 +1,8 @@
+# specify
+#   bucket/project
+#   region/build
+#   environment/build
+
 sam build &&
 sam package \
     --s3-bucket lambda-src-oneid \
@@ -7,5 +12,9 @@ sam deploy \
     --region us-west-2 \
     --parameter-overrides $(cat deployment-params.ini) \
     --capabilities CAPABILITY_IAM \
-    --stack-name sam-app-devint &&
-sam publish -t packaged.yaml --region us-west-2
+    --stack-name sam-app-qa &&
+
+sam publish \
+    -t packaged.yaml \
+    --region us-west-2 \
+    --semantic-version 0.0.16

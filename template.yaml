@@ -3,6 +3,7 @@ AWSTemplateFormatVersion: "2010-09-09"
 Description: |
   sam-app
   Sample SAM Template for sam-app
+#Metadata: Required for SAM publication
 Metadata:
   AWS::ServerlessRepo::Application:
     Name: sam-app
@@ -13,11 +14,16 @@ Metadata:
     ReadmeUrl: README.md
     Labels: ['appId:123']
     HomePageUrl: https://github.com/kthblmfld/sam-app
-    SemanticVersion: 0.0.4
+    SemanticVersion: 0
     SourceCodeUrl: https://github.com/kthblmfld/sam-app
+
+#Globals: Default configs for all functions, can be overridden,
+#  used to streamline the template
 Globals:
   Function:
     Timeout: 3
+
+#Mappings: Feature flags
 Mappings:
   SayHelloFeature:
     devint:
@@ -26,6 +32,8 @@ Mappings:
       status: true
     prod:
       status: false
+    perf:
+      status: true
     sandbox:
       status: true
     stage:
@@ -33,32 +41,43 @@ Mappings:
 Parameters:
   deploymentEnvironment:
     AllowedValues:
-    - sandbox
-    - devint
-    - qa
-    - stage
-    - prod
+      - sandbox
+      - devint
+      - qa
+      - stage
+      - perf
+      - prod
     Default: sandbox
     Type: String
 Resources:
   HelloWorldFunction:
     Properties:
       AutoPublishAlias: !Ref deploymentEnvironment
+      FunctionName: !Sub
+        - sam-app-${env}
+        - {env: !Ref deploymentEnvironment}
       CodeUri: hello_world_function
       DeploymentPreference:
-#        Canary deployment options eg: Canary10Percent5Minutes, Linear10PercentEvery1Minute...
-#        https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations.html
+        #        Canary deployment options eg: Canary10Percent5Minutes, Linear10PercentEvery1Minute...
+        #        https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations.html
         Type: AllAtOnce
 
-#          Type: Canary10Percent10Minutes
-#          Alarms:
-#            # A list of alarms that you want to monitor
-#            - !Ref AliasErrorMetricGreaterThanZeroAlarm
-#            - !Ref LatestVersionErrorMetricGreaterThanZeroAlarm
-#          Hooks:
-#            # Validation Lambda functions that are run before & after traffic shifting
-#            PreTraffic: !Ref PreTrafficLambdaFunction
-#            PostTraffic: !Ref PostTrafficLambdaFunction
+      #           Alarms determine the conditions for automated rollbacks
+      #           Hooks are used for pre/post operations:
+      #             execute other lambdas
+      #             update a change management system
+      #             send out a slack notification
+      #             etc
+
+      #          Type: Canary10Percent10Minutes
+      #          Alarms:
+      #            # A list of alarms that you want to monitor
+      #            - !Ref AliasErrorMetricGreaterThanZeroAlarm
+      #            - !Ref LatestVersionErrorMetricGreaterThanZeroAlarm
+      #          Hooks:
+      #            # Validation Lambda functions that are run before & after traffic shifting
+      #            PreTraffic: !Ref PreTrafficLambdaFunction
+      #            PostTraffic: !Ref PostTrafficLambdaFunction
 
       Environment:
         Variables:
@@ -69,9 +88,9 @@ Resources:
           Properties:
             Pattern:
               detail-type:
-              - "EC2 Instance State-change Notification"
+                - "EC2 Instance State-change Notification"
               source:
-              - aws.ec2
+                - aws.ec2
           Type: CloudWatchEvent
       Handler: hello_world/app.lambda_handler
       Runtime: python3.8
@@ -79,8 +98,8 @@ Resources:
 Outputs:
   HelloWorldFunction:
     Description: "Hello World Lambda Function ARN"
-    Value: HelloWorldFunction.Arn
+    Value: !GetAtt HelloWorldFunction.Arn
   HelloWorldFunctionIamRole:
     Description: "Implicit IAM Role created for Hello World function"
-    Value: HelloWorldFunctionRole.Arn
+    Value: !GetAtt HelloWorldFunctionRole.Arn
 Transform: "AWS::Serverless-2016-10-31"
