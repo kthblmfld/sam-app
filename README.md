@@ -60,6 +60,7 @@
 
 Required/relied on: AWS::ServerlessRepo::Application in template
 
+Best practices
 https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-template-publishing-applications.html
 
 
@@ -67,6 +68,9 @@ https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/s
 
   [Lambda Versioning Strategies](https://medium.com/@kevinng/aws-lambda-versioning-strategies-5ef877efd0be)
 
+  [Discrepancies in documentation](https://github.com/awslabs/serverless-application-model/issues/777)
+
+  [Wy not to use aliases as environment descriptors](https://octopus.com/blog/multi-environment-lambda-deployments)
 
 Sam-generated documentation
 ----

@@ -13,7 +13,7 @@ Metadata:
     ReadmeUrl: README.md
     Labels: ['appId:123']
     HomePageUrl: https://github.com/kthblmfld/sam-app
-    SemanticVersion: 0.0.6
+    SemanticVersion: 0.0.4
     SourceCodeUrl: https://github.com/kthblmfld/sam-app
 Globals:
   Function:
@@ -21,6 +21,8 @@ Globals:
 Mappings:
   SayHelloFeature:
     devint:
+      status: true
+    qa:
       status: true
     prod:
       status: false
@@ -33,6 +35,7 @@ Parameters:
     AllowedValues:
     - sandbox
     - devint
+    - qa
     - stage
     - prod
     Default: sandbox
@@ -46,6 +49,17 @@ Resources:
 #        Canary deployment options eg: Canary10Percent5Minutes, Linear10PercentEvery1Minute...
 #        https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations.html
         Type: AllAtOnce
+
+#          Type: Canary10Percent10Minutes
+#          Alarms:
+#            # A list of alarms that you want to monitor
+#            - !Ref AliasErrorMetricGreaterThanZeroAlarm
+#            - !Ref LatestVersionErrorMetricGreaterThanZeroAlarm
+#          Hooks:
+#            # Validation Lambda functions that are run before & after traffic shifting
+#            PreTraffic: !Ref PreTrafficLambdaFunction
+#            PostTraffic: !Ref PostTrafficLambdaFunction
+
       Environment:
         Variables:
           DeployedEnv: !Ref deploymentEnvironment
