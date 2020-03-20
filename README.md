@@ -1,5 +1,8 @@
 # sam-app
 
+TODO: Figure out how to:
+ Manually roll back a version associated to an alias
+ share a versioned lambda with another stack
 
 #### This project is built on [Python3.8](https://www.python.org/downloads/release/python-380/). Building without it will result in:
 `Error: Binary validation failed!`

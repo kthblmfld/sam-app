@@ -12,9 +12,9 @@ sam deploy \
     --region us-west-2 \
     --parameter-overrides $(cat deployment-params.ini) \
     --capabilities CAPABILITY_IAM \
-    --stack-name sam-app-qa &&
+    --stack-name sam-app-qa
 
-sam publish \
-    -t packaged.yaml \
-    --region us-west-2 \
-    --semantic-version 0.0.16
+#sam publish \
+#    -t packaged.yaml \
+#    --region us-west-2 \
+#    --semantic-version 0.0.16
