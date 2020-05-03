@@ -1,8 +1,13 @@
 # sam-app
 
+TODO: Figure out how to:
+ Manually roll back a version associated to an alias
+ share a versioned lambda with another stack
 
 #### This project is built on [Python3.8](https://www.python.org/downloads/release/python-380/). Building without it will result in:
 `Error: Binary validation failed!`
+
+#### Remote deployment and publication require an [Aws account](https://aws.amazon.com/console/)
 
 #### Required tools:
   [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
@@ -58,6 +63,7 @@
 
 Required/relied on: AWS::ServerlessRepo::Application in template
 
+Best practices
 https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-template-publishing-applications.html
 
 
@@ -65,6 +71,9 @@ https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/s
 
   [Lambda Versioning Strategies](https://medium.com/@kevinng/aws-lambda-versioning-strategies-5ef877efd0be)
 
+  [Discrepancies in documentation](https://github.com/awslabs/serverless-application-model/issues/777)
+
+  [Wy not to use aliases as environment descriptors](https://octopus.com/blog/multi-environment-lambda-deployments)
 
 Sam-generated documentation
 ----
@@ -166,8 +175,9 @@ You can find more information and examples about filtering Lambda function logs 
 Tests are defined in the `tests` folder in this project. Use PIP to install the [pytest](https://docs.pytest.org/en/latest/) and run unit tests.
 
 ```bash
-sam-app$ pip install pytest pytest-mock --user
-sam-app$ python -m pytest tests/ -v
+sam-app$ pip3 install pytest pytest-mock --user
+sam-app$ pip3 install --upgrade pip
+sam-app$ python3.8 -m pytest tests/ -v
 ```
 
 ## Cleanup

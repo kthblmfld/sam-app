@@ -1,43 +1,21 @@
-# import requests
+import os
 
-from model.aws.ec2 import Marshaller
-from model.aws.ec2 import AWSEvent
-from model.aws.ec2 import EC2InstanceStateChangeNotification
+ENV_VARS = {
+    'SayHelloFeature1': None,
+    'DeployedEnv': None
+}
+
+for key in ENV_VARS:
+    if key in os.environ:
+        ENV_VARS[key] = os.environ[key]
 
 
 def lambda_handler(event, context):
-    """Sample Lambda function reacting to EventBridge events
+    print(f"DeployedEnv: {ENV_VARS['DeployedEnv']}")
+    print(f"SayHelloFeature1: {ENV_VARS['SayHelloFeature1']}")
+    print("Hello Piotr")
 
-    Parameters
-    ----------
-    event: dict, required
-        Event Bridge EC2 State Change Events Format
-
-        Event doc: https://docs.aws.amazon.com/eventbridge/latest/userguide/event-types.html#ec2-event-type
-
-    context: object, required
-        Lambda Context runtime methods and attributes
-
-        Context doc: https://docs.aws.amazon.com/lambda/latest/dg/python-context-object.html
-
-    Returns
-    ------
-        The same input event file
-    """
-
-    print(f'Function Name: {context.function_name}')
-    print(f'Function Version: {context.function_version}')
-    print(f'Invoked Function Arn: {context.invoked_function_arn}')
-
-    #Deserialize event into strongly typed object
-    awsEvent:AWSEvent = Marshaller.unmarshall(event, AWSEvent)
-    ec2StateChangeNotification:EC2InstanceStateChangeNotification = awsEvent.detail
-
-    #Execute business logic
-    print("Instance " + ec2StateChangeNotification.instance_id + " transitioned to " + ec2StateChangeNotification.state)
-
-    #Make updates to event payload
-    awsEvent.detail_type = "HelloWorldFunction updated event of " + awsEvent.detail_type;
-
-    #Return event for further processing
-    return Marshaller.marshall(awsEvent)
+    # Keep my one and only test happy :(
+    return {
+        'status': 'ok'
+    }

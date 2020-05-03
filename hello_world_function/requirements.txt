@@ -1,6 +1,2 @@
-requests
-pprint
-six
-regex
 pytest
 pytest-mock
